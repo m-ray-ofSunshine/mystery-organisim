@@ -13,7 +13,31 @@ const mockUpStrand = () => {
   return newStrand;
 };
 
-
+const pAequorFactory = (num, arr) => {
+  return {
+    specimenNum: num,
+    dna: arr,
+    mutate: function () {
+      let randomBase = Math.floor(Math.random() * 15)
+      let newBase = returnRandBase()
+      if(newBase != this.dna[randomBase]){
+      this.dna[randomBase] = newBase
+      } else {
+        this.mutate()
+      }
+    },
+    compareDNA: function (pAequor) {
+      let sameCount = 0
+      for(let i = 0; i < this.dna.length; i++){
+        if(this.dna[i] === pAequor.dna[i]) {
+          sameCount++
+        }
+      }
+      let percent = sameCount/15
+      return `Specimen #1 and specimen #2 have ${percent}% in common.`
+    }
+  }
+}
 
 
 
